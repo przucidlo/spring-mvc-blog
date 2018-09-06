@@ -1,0 +1,46 @@
+html,body{
+	background-color:#30363b !important;
+	font-color: white;
+	height: 100%;
+}
+
+.blog-post{
+
+}
+
+.fill-height {
+    min-height: 100%;
+    height:auto !important; /* cross-browser */
+    height: 100%; /* cross-browser */
+}
+
+.post-content{
+	background-color: #393f46;
+}
+
+.sidebar{
+	background-color: #393f46;
+	height: 100vh;
+}
+
+/* unvisited link */
+a:link {
+    color: white;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+}
+
+/* mouse over link */
+a:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: white;
+   	text-decoration: none;
+}

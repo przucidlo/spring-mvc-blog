@@ -5,15 +5,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("pl.abbl.webstore")
+@ComponentScan("pl.abbl.blog")
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -28,6 +27,14 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
 
         return resolver;
+    }
+    
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    	registry.addResourceHandler("/img/**")
+    			.addResourceLocations("/resources/images/");
+    	registry.addResourceHandler("/css/**")
+		.addResourceLocations("/resources/stylesheets/");
     }
    
 }
