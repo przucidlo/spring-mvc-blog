@@ -13,6 +13,11 @@ public class BlogPostController {
 	@Autowired
 	private BlogPostsService blogPostsService;
 	
+	@RequestMapping()
+	public String homePage() {
+		return "index";
+	}
+	
 	@RequestMapping("/post/{postId}")
 	public String getPostById(Model model, @PathVariable("postId") int postId) {
 		model.addAttribute("blogPost", blogPostsService.getPostById(postId));
