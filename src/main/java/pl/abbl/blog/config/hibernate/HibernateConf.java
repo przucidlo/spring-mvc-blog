@@ -18,11 +18,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConf {
+	
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
 		entityManager.setDataSource(dataSource());
-		entityManager.setPackagesToScan("pl.abbl.blog.domain");
+		entityManager.setPackagesToScan("pl.abbl.blog");
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		entityManager.setJpaVendorAdapter(vendorAdapter);
 		entityManager.setJpaProperties(additionalProperties());
@@ -53,4 +54,5 @@ public class HibernateConf {
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
+	
 }

@@ -1,9 +1,10 @@
-package pl.abbl.blog.domain;
+package pl.abbl.blog.model;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity(name = "blogposts")
 public class BlogPost {
 	@Id
 	@Column(name = "post_Id", nullable = false)

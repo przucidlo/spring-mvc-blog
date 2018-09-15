@@ -18,26 +18,24 @@
 		</nav>
 		<div class="container-fluid">
 		  <div class="row">
-				<div class="col-md-10 px-auto">
-					<c:forEach items="${blogPosts}" var="blogPost">
-						<div class="container">
-							<div class="blog-posts pt-2 w-100">
-								<div class="blog-post bg-dark">
-									<div class="post-title py-2">
-										<div class="cointainer-fluid text-white"> 
-											<h2 class="pl-3 mb-0">${blogPost.postTitle}</h2>
-										</div>
+		      	<div class="col-md-10 px-auto">
+					<div class="container">
+						<div class="blog-posts pt-2 w-75">
+							<div class="blog-post bg-dark">
+								<div class="post-title py-2">
+									<div class="cointainer-fluid text-white"> 
+										<h2 class="pl-3 mb-0">${blogPost.postTitle}</h2>
 									</div>
-									<div class="post-content text-white pt-2 pb-1">
-										<p class="text-justify w-75 mx-auto">
-											${blogPost.postContent}
-										</p>
-									</div>
+								</div>
+								<div class="post-content text-white pt-2 pb-1">
+									<p class="text-justify w-75 mx-auto">
+										${blogPost.postContent}
+									</p>
 								</div>
 							</div>
 						</div>
-					</c:forEach>
-				</div>
+					</div>
+			 	</div>
   			  	<div class="col-sm-2 text-white sidebar text-center">
   			  		<div class="sidebar-wrapper pt-3">
 						<h3><a href="">Latest Posts</a></h3>
