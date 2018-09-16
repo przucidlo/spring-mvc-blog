@@ -3,8 +3,10 @@ package pl.abbl.blog.repository.impl;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -54,13 +56,17 @@ public class BlogContentImpl implements BlogContentRepository{
 
 	@Override
 	public void addPost(BlogPost blogPost) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction txn = entityManager.getTransaction();
 		
+		txn.begin();
+		entityManager.persist(blogPost);
+		txn.commit();
 	}
 
 	@Override
 	public void removePost(String id) {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
 }
