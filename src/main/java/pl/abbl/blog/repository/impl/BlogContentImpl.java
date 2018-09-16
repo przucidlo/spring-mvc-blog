@@ -24,24 +24,34 @@ public class BlogContentImpl implements BlogContentRepository{
 	
 	@Override
 	public BlogPost getPostById(int id) {
-		return entityManagerFactory.createEntityManager().find(BlogPost.class, id);
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
+		BlogPost blogPost = entityManager.find(BlogPost.class, id);
+		
+		entityManager.close();
+		
+		return blogPost;
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<BlogPost> getLatestPostsByRange(int range) {
-		Query query = entityManagerFactory.createEntityManager().createQuery("FROM blogposts");
-		query.setMaxResults(range);
-		List<BlogPost> blogPosts = query.getResultList();
-		Collections.reverse(blogPosts);
+	public List<BlogPost> getAllPosts() {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		List<BlogPost> blogPosts = entityManager.createQuery("FROM blogposts").getResultList();
+		
+		entityManager.close();
+		
 		return blogPosts;
 	}
 
+	
 	@Override
-	public List<BlogPost> getAllPosts() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BlogPost> getLatestPostsByRange(int range) {
+		List<BlogPost> blogPosts = getAllPosts();
+		
+		return blogPosts.subList(Math.max(0, blogPosts.size() - range), blogPosts.size());
 	}
-
+	
 	@Override
 	public List<BlogPost> getPostsByCategory(String category) {
 		// TODO Auto-generated method stub
@@ -62,6 +72,8 @@ public class BlogContentImpl implements BlogContentRepository{
 		txn.begin();
 		entityManager.persist(blogPost);
 		txn.commit();
+		
+		entityManager.close();
 	}
 
 	@Override

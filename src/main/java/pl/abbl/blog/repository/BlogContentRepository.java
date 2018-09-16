@@ -9,8 +9,8 @@ import pl.abbl.blog.model.BlogPost;
 @Repository
 public interface BlogContentRepository {
 	BlogPost getPostById(int id);
-	List<BlogPost> getLatestPostsByRange(int range);
 	List<BlogPost> getAllPosts();
+	List<BlogPost> getLatestPostsByRange(int range);
 	List<BlogPost> getPostsByCategory(String category);
 	List<BlogPost> getPostsByTags(List<String> tags);
 	
