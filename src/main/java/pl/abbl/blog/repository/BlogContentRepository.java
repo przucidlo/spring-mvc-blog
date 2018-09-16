@@ -15,5 +15,5 @@ public interface BlogContentRepository {
 	List<BlogPost> getPostsByTags(List<String> tags);
 	
 	void addPost(BlogPost blogPost);
-	void removePost(String id);
+	void removePost(int id);
 }

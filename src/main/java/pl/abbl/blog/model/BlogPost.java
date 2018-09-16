@@ -2,12 +2,15 @@ package pl.abbl.blog.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "blogposts")
 public class BlogPost {
 	@Id
-	@Column(name = "post_Id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "post_Id", insertable = false, nullable = false)
 	private int postId;
 	@Column(name = "post_Title", nullable = false)
 	private String postTitle;

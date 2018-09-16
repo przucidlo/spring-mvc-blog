@@ -1,17 +1,13 @@
 package pl.abbl.blog.repository.impl;
 
-import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import pl.abbl.blog.model.BlogPost;
@@ -33,11 +29,11 @@ public class BlogContentImpl implements BlogContentRepository{
 		return blogPost;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<BlogPost> getAllPosts() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		List<BlogPost> blogPosts = entityManager.createQuery("FROM blogposts").getResultList();
+		TypedQuery<BlogPost> query = entityManager.createQuery("FROM blogposts", BlogPost.class);
+		List<BlogPost> blogPosts = query.getResultList();
 		
 		entityManager.close();
 		
@@ -77,8 +73,16 @@ public class BlogContentImpl implements BlogContentRepository{
 	}
 
 	@Override
-	public void removePost(String id) {
-	
+	public void removePost(int id) {
+		BlogPost blogPost = getPostById(id);
+		
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction txn = entityManager.getTransaction();
+		
+		txn.begin();
+		entityManager.remove(entityManager.contains(blogPost) ? blogPost : entityManager.merge(blogPost));
+		txn.commit();
+		
+		entityManager.close();
 	}
-
 }

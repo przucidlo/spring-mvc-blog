@@ -2,7 +2,9 @@ package pl.abbl.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +18,10 @@ public class AdministrationController {
 	@Autowired
 	private BlogContentService blogContentService;
 	
-	@RequestMapping()
-	public String getPanelOverview() {
-		return "index";
+	@RequestMapping("/")
+	public String getPanelOverview(Model model) {
+		model.addAttribute("blogPosts", blogContentService.getAllPosts());
+		return "admin";
 	}
 	
 	@RequestMapping(value = "/content/post/add")
@@ -33,8 +36,9 @@ public class AdministrationController {
 		return "redirect:/admin/";
 	}
 	
-	@RequestMapping("/content/post/remove")
-	public void removePost() {
-		
+	@RequestMapping("/content/post/remove/{postId}")
+	public String removePost(@PathVariable("postId") int postId) {
+		blogContentService.removeBlogPost(postId);
+		return "redirect:/admin/";
 	}
 }

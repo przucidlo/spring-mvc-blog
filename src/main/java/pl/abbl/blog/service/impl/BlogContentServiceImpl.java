@@ -18,7 +18,12 @@ public class BlogContentServiceImpl implements BlogContentService{
 	public BlogPost getPostById(int id) {
 		return blogPostsRepository.getPostById(id);
 	}
-
+	
+	@Override
+	public List<BlogPost> getAllPosts() {
+		return blogPostsRepository.getAllPosts();
+	}
+	
 	@Override
 	public List<BlogPost> getLatestPostByRange(int range) {
 		return blogPostsRepository.getLatestPostsByRange(range);
@@ -27,5 +32,10 @@ public class BlogContentServiceImpl implements BlogContentService{
 	@Override
 	public void addBlogPost(BlogPost blogPost) {
 		blogPostsRepository.addPost(blogPost);
+	}
+
+	@Override
+	public void removeBlogPost(int id) {	
+		blogPostsRepository.removePost(id);
 	}
 }
