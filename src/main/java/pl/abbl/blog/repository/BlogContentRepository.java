@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import pl.abbl.blog.model.BlogPost;
 
 @Repository
-public interface BlogPostsRepository {
+public interface BlogContentRepository {
 	BlogPost getPostById(int id);
 	List<BlogPost> getLatestPostsByRange(int range);
 	List<BlogPost> getAllPosts();

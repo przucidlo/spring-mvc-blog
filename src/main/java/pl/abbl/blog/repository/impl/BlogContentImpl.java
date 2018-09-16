@@ -13,10 +13,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import pl.abbl.blog.model.BlogPost;
-import pl.abbl.blog.repository.BlogPostsRepository;
+import pl.abbl.blog.repository.BlogContentRepository;
 
 @Repository
-public class BlogPostsImpl implements BlogPostsRepository{
+public class BlogContentImpl implements BlogContentRepository{
 	@Autowired
 	private EntityManagerFactory entityManagerFactory;
 	
@@ -54,7 +54,6 @@ public class BlogPostsImpl implements BlogPostsRepository{
 
 	@Override
 	public void addPost(BlogPost blogPost) {
-		// TODO Auto-generated method stub
 		
 	}
 

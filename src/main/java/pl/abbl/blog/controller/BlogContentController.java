@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.abbl.blog.service.BlogPostsService;
+import pl.abbl.blog.service.BlogContentService;
 
 @Controller
 @RequestMapping("content")
-public class BlogPostController {
+public class BlogContentController {
 	@Autowired
-	private BlogPostsService blogPostsService;
+	private BlogContentService blogPostsService;
 	
 	@RequestMapping()
 	public String homePage() {

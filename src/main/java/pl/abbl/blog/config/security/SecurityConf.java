@@ -16,20 +16,27 @@ public class SecurityConf extends WebSecurityConfigurerAdapter{
 	@Bean
 	public UserDetailsService userDetailsService(){
 		 InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-		 manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("USER").build());
+		 manager.createUser(User.withDefaultPasswordEncoder().username("user").password("123").roles("ADMIN").build());
 		 return manager;
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/content/**").permitAll()
+				.antMatchers("/", "/content/**").permitAll()
 				.antMatchers("/admin/**").hasRole("ADMIN")
+				.antMatchers("/css/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.loginProcessingUrl("/login")
-				.permitAll();
+				.permitAll()
+				.and()
+			.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/")
+				.and()
+			.httpBasic();
 	}		
 }

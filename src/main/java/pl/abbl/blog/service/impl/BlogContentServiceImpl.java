@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.abbl.blog.model.BlogPost;
-import pl.abbl.blog.repository.BlogPostsRepository;
-import pl.abbl.blog.service.BlogPostsService;
+import pl.abbl.blog.repository.BlogContentRepository;
+import pl.abbl.blog.service.BlogContentService;
 
 @Service
-public class BlogPostServiceImpl implements BlogPostsService{
+public class BlogContentServiceImpl implements BlogContentService{
 	@Autowired
-	private BlogPostsRepository blogPostsRepository;
+	private BlogContentRepository blogPostsRepository;
 
 	@Override
 	public BlogPost getPostById(int id) {
@@ -22,5 +22,10 @@ public class BlogPostServiceImpl implements BlogPostsService{
 	@Override
 	public List<BlogPost> getLatestPostByRange(int range) {
 		return blogPostsRepository.getLatestPostsByRange(range);
+	}
+
+	@Override
+	public void addBlogPost(BlogPost blogPost) {
+		blogPostsRepository.addPost(blogPost);
 	}
 }
