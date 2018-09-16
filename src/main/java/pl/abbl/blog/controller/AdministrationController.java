@@ -18,7 +18,7 @@ public class AdministrationController {
 	@Autowired
 	private BlogContentService blogContentService;
 	
-	@RequestMapping("/")
+	@RequestMapping()
 	public String getPanelOverview(Model model) {
 		model.addAttribute("blogPosts", blogContentService.getAllPosts());
 		return "admin";
