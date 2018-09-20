@@ -9,5 +9,6 @@ public interface BlogContentService {
 	List<BlogPost> getAllPosts();
 	List<BlogPost> getLatestPostByRange(int range);
 	void addBlogPost(BlogPost blogPost);
+	void editBlogPost(BlogPost blogPost);
 	void removeBlogPost(int id);
 }

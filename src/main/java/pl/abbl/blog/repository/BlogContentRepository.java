@@ -13,7 +13,7 @@ public interface BlogContentRepository {
 	List<BlogPost> getLatestPostsByRange(int range);
 	List<BlogPost> getPostsByCategory(String category);
 	List<BlogPost> getPostsByTags(List<String> tags);
-	
 	void addPost(BlogPost blogPost);
+	void editPost(BlogPost blogPost);
 	void removePost(int id);
 }

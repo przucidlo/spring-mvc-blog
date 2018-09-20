@@ -33,7 +33,12 @@ public class BlogContentServiceImpl implements BlogContentService{
 	public void addBlogPost(BlogPost blogPost) {
 		blogPostsRepository.addPost(blogPost);
 	}
-
+	
+	@Override
+	public void editBlogPost(BlogPost blogPost) {
+		blogPostsRepository.editPost(blogPost);	
+	}
+	
 	@Override
 	public void removeBlogPost(int id) {	
 		blogPostsRepository.removePost(id);

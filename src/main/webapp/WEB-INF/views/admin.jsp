@@ -18,6 +18,10 @@
 			location.href = '<c:url value="/admin/content/post/remove/' + postId + '"/>';
 		}
 	}
+	
+	function editPost(postId){
+		location.href = '<c:url value="/admin/content/post/edit/' + postId + '"/>';
+	}
 	</script>
 
 	<head>
@@ -41,6 +45,7 @@
 								<li class="list-group-item list-group-item-dark">
 									${blogPost.postTitle} 
 									<button type="button" class="btn btn-danger" onclick="removePost(${blogPost.postId})">Remove</button>
+									<button type="button" class="btn btn-primary" onclick="editPost(${blogPost.postId})">Edit</button>
 								</li>
 							</c:forEach>
 						</ul>

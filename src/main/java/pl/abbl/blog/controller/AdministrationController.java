@@ -36,6 +36,18 @@ public class AdministrationController {
 		return "redirect:/admin/";
 	}
 	
+	@RequestMapping(value = "/content/post/edit/{postId}")
+	public String editPost(@PathVariable("postId") int postId, Model model) {
+		model.addAttribute("blogPost", blogContentService.getPostById(postId));
+		return "editpost";
+	}
+	
+	@RequestMapping(value = "/content/post/edit/{postId}", method = RequestMethod.POST)
+	public String editPost(@PathVariable("postId") int postId, @ModelAttribute("editPost") BlogPost blogPost) {
+		blogContentService.editBlogPost(blogPost);
+		return "redirect:/admin/";
+	}
+	
 	@RequestMapping("/content/post/remove/{postId}")
 	public String removePost(@PathVariable("postId") int postId) {
 		blogContentService.removeBlogPost(postId);

@@ -73,6 +73,18 @@ public class BlogContentImpl implements BlogContentRepository{
 	}
 
 	@Override
+	public void editPost(BlogPost blogPost) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		EntityTransaction txn = entityManager.getTransaction();
+		
+		txn.begin();
+		entityManager.merge(blogPost);
+		txn.commit();
+		
+		entityManager.close();
+	}
+	
+	@Override
 	public void removePost(int id) {
 		BlogPost blogPost = getPostById(id);
 		
